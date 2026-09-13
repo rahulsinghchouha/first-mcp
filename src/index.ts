@@ -3,6 +3,7 @@ import { server } from "./server.js";
 import { registerHelloTool } from "./tools/hello.js";
 import { registerAddNumbersTool } from "./tools/addNumbers.js";
 import { connectDatabase } from "./database/connection.js";
+import { registerGetTasksTool } from "./tools/getTasks.js";
 import "dotenv/config";
 const app = express();
 
@@ -18,3 +19,6 @@ app.get("/",(req,res)=>{
 await connectDatabase();
 registerHelloTool(server);
 registerAddNumbersTool(server);
+registerGetTasksTool(server);
+
+
