@@ -2,7 +2,6 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getAllTasks } from "../services/taskService.js";
 
 export function registerGetTasksTool(server: McpServer) {
-    console.log("this is the mcp tool register");
   server.tool(
     "get_tasks",
     "Get all tasks from the task management database",
