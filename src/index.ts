@@ -6,6 +6,8 @@ import { registerHelloTool } from "./tools/hello.js";
 import { registerAddNumbersTool } from "./tools/addNumbers.js";
 import { registerGetTasksTool } from "./tools/getTasks.js";
 import { connectDatabase } from "./database/connection.js";
+import { initializeDatabaseSchema } from "./database/schema.js";
+import {registerCreateTaskTool} from "./tools/createTask.js";
 import { randomUUID } from "node:crypto";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import type { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
@@ -23,6 +25,7 @@ app.get("/", (req, res) => {
 });
 
 await connectDatabase();
+await initializeDatabaseSchema();
 
 app.post("/mcp", async (req, res) => {
     try {
@@ -35,7 +38,7 @@ app.post("/mcp", async (req, res) => {
         registerHelloTool(server);
         registerAddNumbersTool(server);
         registerGetTasksTool(server);
-
+        registerCreateTaskTool(server);
         const transport = new StreamableHTTPServerTransport({
             sessionIdGenerator: undefined,
             enableJsonResponse: true,
