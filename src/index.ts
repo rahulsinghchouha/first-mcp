@@ -29,7 +29,7 @@ await initializeDatabaseSchema();
 
 app.post("/mcp", async (req, res) => {
     try {
-        console.log("1. Creating server");
+        console.log("1. Creating server",req.body);
 
         const server = createMcpServer();
 
