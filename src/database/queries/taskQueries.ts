@@ -22,7 +22,12 @@ export async function insertTask(
     [title, description ?? null]
   );
 
-  return result.rows[0];
+  const task = result.rows[0];
+  if (!task) {
+    throw new Error("Task insert returned no row");
+  }
+
+  return task;
 }
 
 export async function findAllTasks(): Promise<Task[]> {
